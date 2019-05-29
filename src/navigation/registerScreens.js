@@ -10,6 +10,7 @@ import {
   Tab1Screen,
   Tab2Screen
 } from 'src/screens';
+import { Start } from 'src/screens/Start';
 import { Provider } from 'src/redux';
 
 import {
@@ -17,16 +18,15 @@ import {
   LOGIN_SCREEN,
   SINGLE_APP_SCREEN,
   TAB1_SCREEN,
-  TAB2_SCREEN
+  TAB2_SCREEN,
+  START
 } from './Screens';
 
 function WrappedComponent(Component) {
   return function inject(props) {
     const EnhancedComponent = () => (
       <Provider>
-        <Component
-          {...props}
-        />
+        <Component {...props} />
       </Provider>
     );
 
@@ -40,5 +40,6 @@ export default function () {
   Navigation.registerComponent(SINGLE_APP_SCREEN, () => WrappedComponent(SingleAppScreen));
   Navigation.registerComponent(TAB1_SCREEN, () => WrappedComponent(Tab1Screen));
   Navigation.registerComponent(TAB2_SCREEN, () => WrappedComponent(Tab2Screen));
+  Navigation.registerComponent(START, () => WrappedComponent(Start));
   console.info('All screens have been registered...');
 }

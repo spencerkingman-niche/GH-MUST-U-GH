@@ -2,11 +2,7 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import {
-  StyleSheet,
-  View,
-  Alert
-} from 'react-native';
+import { StyleSheet, View, Alert } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 
@@ -25,31 +21,36 @@ const styles = StyleSheet.create({
 });
 
 class LoginScreen extends PureComponent {
-
   loginWithFacebook = () => {
     const { getFacebookUserData, screenType } = this.props;
 
-    LoginManager
-      .logInWithReadPermissions(['public_profile', 'email'])
-      .then((result) => {
-        if (result.isCancelled) {
-          return Promise.reject('Facebook login cancelled.');
-        }
-        return AccessToken.getCurrentAccessToken();
-      })
-      .then((data) => {
-        if (data.accessToken) {
-          getFacebookUserData({ facebookToken: data.accessToken });
-          if (screenType === 'Single') {
-            pushSingleScreenApp();
-          } else {
-            pushTabBasedApp();
-          }
-        } else {
-          Alert.alert('ReactNativeStarterKit', 'Failed to get facebook access token.');
-        }
-      })
-      .catch(() => Alert.alert('ReactNativeStarterKit', 'Something went wrong.'));
+    if (screenType === 'Single') {
+      pushSingleScreenApp();
+    } else {
+      pushTabBasedApp();
+    }
+
+    // LoginManager
+    //   .logInWithReadPermissions(['public_profile', 'email'])
+    //   .then((result) => {
+    //     if (result.isCancelled) {
+    //       return Promise.reject('Facebook login cancelled.');
+    //     }
+    //     return AccessToken.getCurrentAccessToken();
+    //   })
+    //   .then((data) => {
+    //     if (data.accessToken) {
+    //       getFacebookUserData({ facebookToken: data.accessToken });
+    //       if (screenType === 'Single') {
+    //         pushSingleScreenApp();
+    //       } else {
+    //         pushTabBasedApp();
+    //       }
+    //     } else {
+    //       Alert.alert('ReactNativeStarterKit', 'Failed to get facebook access token.');
+    //     }
+    //   })
+    //   .catch(() => Alert.alert('ReactNativeStarterKit', 'Something went wrong.'));
   };
 
   render() {
