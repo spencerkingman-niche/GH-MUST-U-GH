@@ -1,35 +1,34 @@
 // @flow
 
 import { Navigation } from 'react-native-navigation';
+import * as colors from '../styles/colors';
 
 import {
   // WELCOME_SCREEN,
   SINGLE_APP_SCREEN,
   TAB1_SCREEN,
   TAB2_SCREEN,
-  START
+  START,
 } from './Screens';
 import registerScreens from './registerScreens';
 
 // Register all screens on launch
 registerScreens();
 
-const gray01 = '#222';
-
 export function pushTutorialScreen() {
   Navigation.setDefaultOptions({
     topBar: {
       background: {
-        color: 'white'
+        color: colors.gray01
       },
       title: {
-        color: gray01
+        color: colors.white
       },
       backButton: {
         title: '', // Remove previous screen name from back button
-        color: gray01
+        color: colors.white
       },
-      buttonColor: gray01
+      buttonColor: colors.white
     },
     statusBar: {
       style: 'light'
@@ -42,9 +41,9 @@ export function pushTutorialScreen() {
     },
     bottomTab: {
       textColor: 'gray',
-      selectedTextColor: gray01,
+      selectedTextColor: colors.gray01,
       iconColor: 'gray',
-      selectedIconColor: gray01
+      selectedIconColor: colors.gray01
     }
   });
 

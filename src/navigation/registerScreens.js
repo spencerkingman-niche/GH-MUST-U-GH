@@ -11,6 +11,7 @@ import {
   Tab2Screen
 } from 'src/screens';
 import { Start } from 'src/screens/Start';
+import { Songs } from 'src/screens/Songs';
 import { Provider } from 'src/redux';
 
 import {
@@ -19,6 +20,7 @@ import {
   SINGLE_APP_SCREEN,
   TAB1_SCREEN,
   TAB2_SCREEN,
+  SONGS,
   START
 } from './Screens';
 
@@ -40,6 +42,7 @@ export default function () {
   Navigation.registerComponent(SINGLE_APP_SCREEN, () => WrappedComponent(SingleAppScreen));
   Navigation.registerComponent(TAB1_SCREEN, () => WrappedComponent(Tab1Screen));
   Navigation.registerComponent(TAB2_SCREEN, () => WrappedComponent(Tab2Screen));
+  Navigation.registerComponent(SONGS, () => WrappedComponent(Songs));
   Navigation.registerComponent(START, () => WrappedComponent(Start));
   console.info('All screens have been registered...');
 }
