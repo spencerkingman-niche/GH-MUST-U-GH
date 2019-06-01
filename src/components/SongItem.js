@@ -2,19 +2,40 @@
 
 import React from 'react';
 import {
-  StyleSheet, Text, View, Image, TouchableWithoutFeedback
+  StyleSheet, View, Image, TouchableOpacity
 } from 'react-native';
+import * as Colors from '../styles/colors';
+import { SFProDisplayMedium } from '../fonts/SFProDisplayMedium';
 // import { Navigation } from 'react-native-navigation';
-// import Config from 'react-native-config';
 
 const styles = StyleSheet.create({
-  songItemContainer: {
-    paddingTop: 20,
-    alignItems: 'center'
+  title: {
+    color: Colors.gray01,
+    fontSize: 20,
+    marginLeft: 15,
+    width: '76%',
   },
-  songItemImage: {
+  mainContainer: {
+    paddingVertical: 15,
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.gray02,
     width: '100%',
-    height: 200,
+  },
+  image: {
+    width: 100,
+    height: 55,
+    left: -15,
+    position: 'absolute',
+  },
+  imageContainer: {
+    overflow: 'hidden',
+    height: 55,
+    borderRadius: 4,
+    width: 55,
+    backgroundColor: 'transparent',
+    marginLeft: 10,
   }
 });
 
@@ -41,17 +62,17 @@ export class SongItem extends React.Component {
 
     render() {
       return (
-        <TouchableWithoutFeedback onPress={this.handlePress}>
-          <View style={styles.songItemContainer}>
+        <TouchableOpacity onPress={this.handlePress} style={styles.mainContainer}>
+          <View style={styles.imageContainer}>
             <Image
-              style={styles.songItemImage}
+              style={styles.image}
               source={{ uri: this.props.imageSrc }}
             />
-            <Text>
-              {this.props.title}
-            </Text>
           </View>
-        </TouchableWithoutFeedback>
+          <SFProDisplayMedium style={styles.title}>
+            {this.props.title}
+          </SFProDisplayMedium>
+        </TouchableOpacity>
       );
     }
 }
