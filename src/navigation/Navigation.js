@@ -12,6 +12,8 @@ import {
 } from './Screens';
 import registerScreens from './registerScreens';
 
+console.disableYellowBox = true;
+
 // Register all screens on launch
 registerScreens();
 
@@ -22,7 +24,9 @@ export function pushTutorialScreen() {
         color: colors.gray01
       },
       title: {
-        color: colors.white
+        color: colors.white,
+        fontFamily: 'Fenix',
+        fontSize: 20,
       },
       backButton: {
         title: '', // Remove previous screen name from back button

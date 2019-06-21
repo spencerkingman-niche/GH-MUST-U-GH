@@ -80,6 +80,7 @@ export class Songs extends React.Component {
             id={item.id.videoId}
             title={item.snippet.title}
             imageSrc={item.snippet.thumbnails.high.url}
+            date={item.snippet.publishedAt}
           />}
         //   ItemSeparatorComponent={this.renderSeparator}
         />

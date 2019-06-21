@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.white,
+    backgroundColor: colors.yellow01,
   },
   logo: {
     width: LOGO_SIZE,
@@ -22,8 +22,15 @@ export const styles = StyleSheet.create({
   },
   buttonText: {
     color: colors.gray01,
-    fontSize: 20,
-    fontWeight: 'bold'
+    fontSize: 24,
+    // fontFamily: 'Average-Regular',
+    // fontFamily: 'Domine-Bold',
+    // fontFamily: 'Domine-Regular',
+    // fontFamily: 'Eczar-Regular',
+    fontFamily: 'Fenix',
+    // fontFamily: 'Inconsolata-Bold',
+    // fontFamily: 'Overlock-Bold',
+
   },
   menu: {
     width: 280,
