@@ -37,7 +37,7 @@ export class Start extends React.PureComponent {
               onPress={() => this.handleSongsPress('Songs')}
               style={styles.button}
             >
-              <SFProDisplayRegular style={styles.buttonText}>Songs</SFProDisplayRegular>
+              <SFProDisplayRegular style={styles.buttonText}>SONGS</SFProDisplayRegular>
             </Touchable>
             <Touchable
               onPress={() => this.handleGetStartAction('Single')}
