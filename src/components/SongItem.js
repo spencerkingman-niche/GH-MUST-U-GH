@@ -1,79 +1,91 @@
 // @flow
 
-import React from 'react';
-import {
-  StyleSheet, View, Image, TouchableOpacity
-} from 'react-native';
-import * as Colors from '../styles/colors';
-import { SFProDisplayMedium } from '../fonts/SFProDisplayMedium';
-// import { Navigation } from 'react-native-navigation';
+import React from "react";
+import PropTypes from "prop-types";
+import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
+import * as Colors from "../styles/colors";
+import { SFProDisplayMedium } from "../fonts/SFProDisplayMedium";
+import { Navigation } from "react-native-navigation";
+import { SONG } from "../navigation/Screens";
 
 const styles = StyleSheet.create({
   contentContainer: {
-    width: '76%',
-    flexDirection: 'column',
-    // borderWidth: 1,
+    width: "76%",
+    flexDirection: "column",
     paddingLeft: 15,
-    justifyContent: 'center',
-    // borderWidth: 1,
+    justifyContent: "center"
   },
   image: {
     width: 100,
     height: 55,
     left: -15,
-    position: 'absolute',
+    position: "absolute"
   },
   imageContainer: {
-    overflow: 'hidden',
+    overflow: "hidden",
     height: 55,
     borderRadius: 4,
     width: 55,
-    backgroundColor: 'transparent',
-    marginLeft: 10,
+    backgroundColor: "transparent",
+    marginLeft: 10
   },
   mainContainer: {
     paddingVertical: 15,
-    alignItems: 'center',
-    flexDirection: 'row',
+    alignItems: "center",
+    flexDirection: "row",
     borderBottomWidth: 1,
     borderBottomColor: Colors.gray02,
-    width: '100%',
+    width: "100%"
   },
   subtitle: {
     color: Colors.gray03,
     fontSize: 16,
-    fontFamily: 'Fenix',
-    // borderWidth: 1,
+    fontFamily: "Fenix"
   },
   title: {
     color: Colors.gray01,
-    fontSize: 22,
-    fontFamily: 'Fenix',
-    marginBottom: 3,
-    // borderWidth: 1,
-  },
+    fontSize: 20,
+    fontFamily: "Fenix",
+    marginBottom: 3
+  }
 });
 
-
-export class SongItem extends React.Component {
-
+export class SongItem extends React.PureComponent {
   handlePress = () => {
-    //   Navigation.push(this.props.componentId, {
-    //     component: {
-    //       name: SONG,
-    //       passProps: {
-    //         ytubeId: this.props.id
-    //       },
-    //       options: {
-    //         topBar: {
-    //           title: {
-    //             text: this.props.id
-    //           }
-    //         }
-    //       }
-    //     }
-    //   });
-  }
+    console.log(this.props.item);
+    const {
+      date,
+      description,
+      id,
+      imageSrc,
+      playlistId,
+      position,
+      thumbnailSrc,
+      title
+    } = this.props;
+    Navigation.push("MAIN", {
+      component: {
+        name: SONG,
+        passProps: {
+          date,
+          description,
+          id,
+          imageSrc,
+          playlistId,
+          position,
+          thumbnailSrc,
+          title
+        },
+        options: {
+          topBar: {
+            title: {
+              text: this.props.title
+            }
+          }
+        }
+      }
+    });
+  };
 
   render() {
     return (
@@ -81,7 +93,7 @@ export class SongItem extends React.Component {
         <View style={styles.imageContainer}>
           <Image
             style={styles.image}
-            source={{ uri: this.props.imageSrc }}
+            source={{ uri: this.props.thumbnailSrc }}
           />
         </View>
         <View style={styles.contentContainer}>
@@ -96,3 +108,10 @@ export class SongItem extends React.Component {
     );
   }
 }
+
+SongItem.propTypes = {
+  date: PropTypes.string.isRequired,
+  imageSrc: PropTypes.string.isRequired,
+  onPress: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired
+};

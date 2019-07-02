@@ -152,6 +152,13 @@ configurations.all {
 }
 
 dependencies {
+    compile project(':react-native-youtube')
+    compile project(':react-native-video')
+    compile project(':react-native-vector-icons')
+    compile project(':react-native-fbsdk')
+    compile project(':react-native-config')
+    implementation project(':react-native-youtube')
+    implementation project(':react-native-video')
     implementation project(':react-native-config')
     implementation project(':react-native-fbsdk')
     implementation project(':react-native-vector-icons')

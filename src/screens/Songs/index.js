@@ -1,32 +1,31 @@
 // @flow
 
-import React from 'react';
-import {
-  StyleSheet, Text, View, FlatList
-} from 'react-native';
-import Config from 'react-native-config';
-import { SongItem } from '../../components/SongItem';
+import React from "react";
+import { StyleSheet, Text, View, FlatList } from "react-native";
+import Config from "react-native-config";
+import { SongItem } from "../../components/SongItem";
 
 const styles = StyleSheet.create({
   flex: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: "center",
+    justifyContent: "center"
   }
 });
 
 // eslint-disable-next-line max-len
-const YOU_TUBE_REQUEST = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${Config.SPENKING_STUFF_PLAYLIST_ID}&maxResults=20&key=${Config.YOU_TUBE_API_KEY}`;
+const YOU_TUBE_REQUEST = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${
+  Config.SPENKING_STUFF_PLAYLIST_ID
+}&maxResults=20&key=${Config.YOU_TUBE_API_KEY}`;
 
 export class Songs extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
       loading: false,
       data: [],
-      error: null,
-    //   refreshing: false,
+      error: null
+      //   refreshing: false,
     };
   }
 
@@ -44,45 +43,69 @@ export class Songs extends React.Component {
       this.setState({
         data: Array.from(responseJSON.items),
         error: responseJSON.error || null,
-        loading: false,
+        loading: false
         // refreshing: false
       });
     } catch (error) {
       console.error(error);
       this.setState({
         loading: false,
-        error,
+        error
       });
     }
-  }
+  };
 
   render() {
-    if (this.state.loading) {
+    const { data, error, loading } = this.state;
+    if (loading) {
       return (
         <View style={styles.flex}>
           <Text>LOADING</Text>
         </View>
       );
-    } if (this.state.error) {
+    }
+    if (error) {
       return (
         <View style={styles.flex}>
-          <Text>{'I\'m sorry. There has been an error. Maybe you are not connected to the internet?'}</Text>
+          {/* eslint-disable-next-line max-len */}
+          <Text>
+            {
+              "I'm sorry. There has been an error. Maybe you are not connected to the internet?"
+            }
+          </Text>
         </View>
       );
     }
     return (
       <View style={styles.flex}>
         <FlatList
-          data={this.state.data}
-          keyExtractor={item => item.id.videoId}
-          renderItem={({ item }) => <SongItem
-            key={item.id.videoId}
-            id={item.id.videoId}
-            title={item.snippet.title}
-            imageSrc={item.snippet.thumbnails.high.url}
-            date={item.snippet.publishedAt}
-          />}
-        //   ItemSeparatorComponent={this.renderSeparator}
+          data={data}
+          keyExtractor={item => item.snippet.resourceId.videoId}
+          renderItem={({ item }) => {
+            const {
+              publishedAt,
+              description,
+              resourceId,
+              thumbnails,
+              playlistId,
+              position,
+              title
+            } = item.snippet;
+            return (
+              <SongItem
+                date={publishedAt}
+                description={description}
+                id={resourceId.videoId}
+                imageSrc={thumbnails.standard.url}
+                key={resourceId.videoId}
+                playlistId={playlistId}
+                position={position}
+                thumbnailSrc={thumbnails.default.url}
+                title={title}
+              />
+            );
+          }}
+          //   ItemSeparatorComponent={this.renderSeparator}
         />
       </View>
     );

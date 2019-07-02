@@ -2,6 +2,7 @@
   "parser": "babel-eslint",
   "extends": [
     "airbnb",
+    "plugin:prettier/recommended",
     "plugin:flowtype/recommended"
   ],
   "env": {
@@ -20,11 +21,7 @@
     "Action": true,
     "FormData": true
   },
-  "plugins": [
-    "react",
-    "react-native",
-    "flowtype"
-  ],
+  "plugins": ["react", "react-native", "flowtype"],
   "settings": {
     "flowtype": {
       "onlyFilesWithFlowAnnotation": true
@@ -32,7 +29,7 @@
   },
   "rules": {
     "comma-dangle": 0,
-    "indent": [2, 2, {"SwitchCase": 1}],
+    "indent": [2, 2, { "SwitchCase": 1 }],
     "no-console": 0,
     "camelcase": 0,
     "react-native/no-unused-styles": 2,
