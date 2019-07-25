@@ -1,4 +1,4 @@
-// @flow
+
 
 import { set, isEmpty } from 'lodash';
 

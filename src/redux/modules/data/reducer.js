@@ -1,4 +1,4 @@
-// @flow
+
 
 import {
   GET_FACEBOOK_DATA_SUCCESS

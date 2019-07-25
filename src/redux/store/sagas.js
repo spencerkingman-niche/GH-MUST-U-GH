@@ -1,12 +1,6 @@
-// @flow
-
-import { fork, all } from 'redux-saga/effects';
-import {
-  dataSaga
-} from '../modules';
+import { fork, all } from "redux-saga/effects";
+import { dataSaga } from "../modules";
 
 export default function* rootSaga() {
-  yield all([
-    fork(dataSaga)
-  ]);
+  yield all([fork(dataSaga)]);
 }

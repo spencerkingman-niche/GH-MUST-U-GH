@@ -3,12 +3,13 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "flow": "flow",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "start:clean": "npm start -- --reset-cache",
     "start:cauterize": "watchman watch-del-all && rm -rf $TMPDIR/metro-* && rm -rf $TMPDIR/react-* & rm -rf $TMPDIR/haste-* && rm -rf node_modules/ && npm install && npm start -- --reset-cache",
     "start:scorched-earth": "watchman watch-del-all && rm -rf $TMPDIR/metro-* && rm -rf $TMPDIR/react-* & rm -rf $TMPDIR/haste-* && rm -rf node_modules/ && npm cache verify && npm install && npm start -- --reset-cache",
     "test": "jest",
-    "android": "concurrently \"npm run android:dubugger\" \"npm run android:packager\" \"cd ./android && ./gradlew app:assembleDebug && ./gradlew installDebug\"",
+    "android": "concurrently \"npm run android:debugger\" \"npm run android:packager\" \"cd ./android && ./gradlew app:assembleDebug && ./gradlew installDebug\"",
     "android-build-prod": "export ENVFILE=.env && cd android && ./gradlew app:assembleRelease && cd .."
   },
   "dependencies": {
@@ -58,12 +59,11 @@
     "eslint-plugin-prettier": "3.1.0",
     "eslint-plugin-react": "7.11.1",
     "eslint-plugin-react-native": "3.5.0",
-    "flow-bin": "0.86.0",
-    "flow-typed": "2.5.1",
     "jest": "24.1.0",
     "jest-enzyme": "7.0.1",
     "jest-repl": "23.6.0",
     "metro-react-native-babel-preset": "0.52.0",
+    "prettier": "1.18.2",
     "react-test-renderer": "16.6.3",
     "schedule": "0.4.0"
   },

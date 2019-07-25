@@ -1,4 +1,4 @@
-// @flow
+
 
 import { App_Service } from 'src/services';
 

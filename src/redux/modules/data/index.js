@@ -1,4 +1,4 @@
-// @flow
+
 
 export { default as data } from './reducer';
 export { connectData } from './connectData';

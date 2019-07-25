@@ -1,11 +1,9 @@
-// @flow
-
 import React from "react";
 import PropTypes from "prop-types";
+import { Navigation } from "react-native-navigation";
 import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import * as Colors from "../styles/colors";
 import { SFProDisplayMedium } from "../fonts/SFProDisplayMedium";
-import { Navigation } from "react-native-navigation";
 import { SONG } from "../navigation/Screens";
 
 const styles = StyleSheet.create({
@@ -52,7 +50,6 @@ const styles = StyleSheet.create({
 
 export class SongItem extends React.PureComponent {
   handlePress = () => {
-    console.log(this.props.item);
     const {
       date,
       description,
@@ -112,6 +109,10 @@ export class SongItem extends React.PureComponent {
 SongItem.propTypes = {
   date: PropTypes.string.isRequired,
   imageSrc: PropTypes.string.isRequired,
-  onPress: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  playlistId: PropTypes.string.isRequired,
+  position: PropTypes.number.isRequired,
+  thumbnailSrc: PropTypes.string.isRequired
 };

@@ -1,4 +1,4 @@
-// @flow
+
 
 import store from './store';
 

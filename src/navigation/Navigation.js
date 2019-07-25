@@ -1,4 +1,4 @@
-// @flow
+
 
 import { Navigation } from "react-native-navigation";
 import * as colors from "../styles/colors";

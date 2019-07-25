@@ -1,4 +1,4 @@
-// @flow
+
 
 import { persistCombineReducers } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
