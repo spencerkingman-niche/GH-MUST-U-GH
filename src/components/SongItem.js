@@ -35,6 +35,11 @@ const styles = StyleSheet.create({
     borderBottomColor: Colors.gray02,
     width: "100%"
   },
+  originalBy: {
+    color: Colors.gray01,
+    fontSize: 16,
+    fontFamily: "Fenix"
+  },
   subtitle: {
     color: Colors.gray03,
     fontSize: 16,
@@ -55,6 +60,7 @@ export class SongItem extends React.PureComponent {
       description,
       id,
       imageSrc,
+      lyrics,
       playlistId,
       position,
       thumbnailSrc,
@@ -68,6 +74,7 @@ export class SongItem extends React.PureComponent {
           description,
           id,
           imageSrc,
+          lyrics,
           playlistId,
           position,
           thumbnailSrc,
@@ -97,9 +104,14 @@ export class SongItem extends React.PureComponent {
           <SFProDisplayMedium style={styles.title}>
             {this.props.title}
           </SFProDisplayMedium>
-          <SFProDisplayMedium style={styles.subtitle}>
+          {this.props.songType === "cover" && (
+            <SFProDisplayMedium style={styles.originalBy}>
+              {this.props.originalBy}
+            </SFProDisplayMedium>
+          )}
+          {this.props.songType === "original" && (<SFProDisplayMedium style={styles.subtitle}>
             {this.props.date.slice(0, 10)}
-          </SFProDisplayMedium>
+          </SFProDisplayMedium>)}
         </View>
       </TouchableOpacity>
     );
@@ -108,11 +120,17 @@ export class SongItem extends React.PureComponent {
 
 SongItem.propTypes = {
   date: PropTypes.string.isRequired,
-  imageSrc: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  imageSrc: PropTypes.string.isRequired,
+  originalBy: PropTypes.string,
   playlistId: PropTypes.string.isRequired,
   position: PropTypes.number.isRequired,
-  thumbnailSrc: PropTypes.string.isRequired
+  songType: PropTypes.oneOf(["cover", "original"]).isRequired,
+  thumbnailSrc: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
+};
+
+SongItem.defaultProps = {
+  originalBy: ""
 };

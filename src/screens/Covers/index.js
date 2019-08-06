@@ -9,13 +9,18 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center"
+  },
+  errorTextContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 50
   }
 });
 
 // eslint-disable-next-line max-len
-const YOU_TUBE_REQUEST = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${Config.SPENKING_SONGS_PLAYLIST_ID}&maxResults=20&key=${Config.YOU_TUBE_API_KEY}`;
-
-export class Songs extends React.Component {
+const YOU_TUBE_REQUEST = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${Config.SPENKING_COVERS_PLAYLIST_ID}&maxResults=20&key=${Config.YOU_TUBE_API_KEY}`;
+export class Covers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -63,12 +68,9 @@ export class Songs extends React.Component {
     }
     if (error) {
       return (
-        <View style={styles.flex}>
-          {/* eslint-disable-next-line max-len */}
-          <Text>
-            {
-              "I'm sorry. There has been an error. Maybe you are not connected to the internet?"
-            }
+        <View style={styles.errorTextContainer}>
+          <Text style={styles.errorText}>
+            {`I'm sorry. There has been an error.\n I will be working on it\n\n Also, this app only works if you are connected to the internet, so make sure you have a good signal.`}
           </Text>
         </View>
       );
@@ -95,9 +97,12 @@ export class Songs extends React.Component {
                 id={id}
                 imageSrc={thumbnails.standard.url}
                 key={id}
+                originalBy={
+                  songData[id].originalBy ? songData[id].originalBy : null
+                }
                 playlistId={playlistId}
                 position={position}
-                songType={songData[id].songType}
+                songType="cover"
                 thumbnailSrc={thumbnails.default.url}
                 title={songData[id].displayTitle}
               />

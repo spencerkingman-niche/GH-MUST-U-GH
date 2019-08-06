@@ -3,13 +3,23 @@ import PropTypes from "prop-types";
 import { Dimensions, ScrollView, StyleSheet, Text, View } from "react-native";
 import YouTube from "react-native-youtube";
 import Config from "react-native-config";
-import { lyrics } from "../../constants/lyrics";
 import * as Colors from "../../styles/colors";
+import { songData } from "../../constants/songData";
 
 const vidWidth = Dimensions.get("window").width;
 const vidHeight = (vidWidth * 9) / 16;
 
 const styles = StyleSheet.create({
+  contentBottom: {
+    alignSelf: "flex-start",
+    height: 100,
+    borderWidth: 1
+  },
+  contentTop: {
+    alignSelf: "flex-end",
+    height: 100,
+    borderWidth: 1
+  },
   flex: {
     flex: 1,
     alignItems: "center",
@@ -43,19 +53,15 @@ export class Song extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      isReady: false,
-      status: null,
-      quality: null,
-      error: null
+      // isReady: false,
+      // status: null,
+      // quality: null,
+      // error: null
     };
   }
 
-  getLyrics = () => {
-    console.log(lyrics, this.props.title);
-    return lyrics[this.props.title];
-  };
-
   render() {
+    const { id } = this.props;
     return (
       <View style={styles.flex}>
         <View style={styles.shadow}>
@@ -67,18 +73,35 @@ export class Song extends React.PureComponent {
             fullscreen={false} // control whether the video should play in fullscreen or inline
             loop={true} // control whether the video should loop when ended
             modestbranding={true}
-            onReady={this.setState({ isReady: true })}
-            onChangeState={e => this.setState({ status: e.state })}
-            onChangeQuality={e => this.setState({ quality: e.quality })}
-            onError={e => this.setState({ error: e.error })}
+            // onReady={this.setState({ isReady: true })}
+            // onChangeState={e => this.setState({ status: e.state })}
+            // onChangeQuality={e => this.setState({ quality: e.quality })}
+            // onError={e => this.setState({ error: e.error })}
             rel={false}
             showFullscreenButton={false}
             style={styles.youTube}
           />
         </View>
+        {this.props.songType === "cover" && (
+          <View style={styles.contentTop}>
+            <Text>{songData[id].displayTitle}</Text>
+            <Text>{songData[id].originalBy}</Text>
+          </View>
+        )}
         <ScrollView style={styles.lyricsContainer}>
-          <Text style={styles.lyrics}>{lyrics[this.props.title]}</Text>
+          <Text style={styles.lyrics}>
+            {songData[id].lyric1 ? songData[id].lyric1 : ""}
+          </Text>
         </ScrollView>
+        {this.props.songType === "cover" && (
+          <View style={styles.contentBottom}>
+            <Text>
+              {"From the album "}
+              <Text>{songData[id].onAlbum}</Text>
+            </Text>
+            <Text>{songData[id].writingDate}</Text>
+          </View>
+        )}
       </View>
     );
   }
@@ -86,10 +109,5 @@ export class Song extends React.PureComponent {
 
 Song.propTypes = {
   id: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  title: PropTypes.string.isRequired
-};
-
-Song.defaultProps = {
-  description: ""
+  songType: PropTypes.oneOf(["cover", "original"]).isRequired
 };
