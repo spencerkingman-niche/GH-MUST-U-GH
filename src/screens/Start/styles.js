@@ -25,9 +25,9 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     // fontFamily: 'Average-Regular',
     // fontFamily: 'Domine-Bold',
-    // fontFamily: 'Domine-Regular',
-    // fontFamily: 'Eczar-Regular',
     fontFamily: 'Fenix',
+    // fontFamily: 'Eczar-Regular',
+    // fontFamily: 'FenixRegular',
     // fontFamily: 'Inconsolata-Bold',
     // fontFamily: 'Overlock-Bold',
 

@@ -4,3 +4,4 @@
 __mocks__/**/*.js
 jest-setup.js
 babel.config.js
+./.prettierrc

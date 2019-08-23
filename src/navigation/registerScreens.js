@@ -13,7 +13,9 @@ function WrappedComponent(Component) {
   return function inject(props) {
     const EnhancedComponent = () => (
       <Provider>
-        <Component {...props} />
+        <Component
+          {...props}
+        />
       </Provider>
     );
 

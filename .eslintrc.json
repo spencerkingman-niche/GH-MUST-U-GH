@@ -2,7 +2,10 @@
   "parser": "babel-eslint",
   "extends": [
     "airbnb",
+    "prettier",
+    "prettier/react",
     "plugin:prettier/recommended",
+    "eslint-config-prettier"
   ],
   "env": {
     "browser": false,
@@ -79,6 +82,14 @@
         "ignore": [
           "componentId"
         ]
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "es5",
+        "singleQuote": true,
+        "printWidth": 100
       }
     ]
   },
