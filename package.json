@@ -13,7 +13,7 @@
     "android-build-prod": "export ENVFILE=.env && cd android && ./gradlew app:assembleRelease && cd .."
   },
   "dependencies": {
-    "lodash": "4.17.15",
+    "lodash": "4.17.19",
     "prop-types": "15.7.2",
     "react": "16.6.3",
     "react-native": "=0.58.5",
